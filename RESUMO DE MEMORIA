@@ -1,0 +1,134 @@
+##Resumo da Aula de Memória
+
+Nesta aula, abordamos conceitos essenciais relacionados à memória de computadores e manipulação de dados em programação, com foco em C e C++.
+
+Aqui estão exemplos práticos para cada um dos tópicos abordados na aula:
+
+1. **Hexadecimal**:
+   - O número 255 em decimal é representado como `0xFF` em hexadecimal.
+   ```c
+   int num = 255;
+   printf("Número em hexadecimal: %X\n", num);  // Saída: FF
+   ```
+
+2. **Endereços de Memória**:
+   - O endereço de uma variável pode ser acessado usando o operador `&`.
+   ```c
+   int x = 10;
+   printf("Endereço de memória de x: %p\n", (void*)&x);
+   ```
+
+3. **Ponteiros**:
+   - Ponteiros são usados para armazenar o endereço de outras variáveis.
+   ```c
+   int x = 10;
+   int* p = &x;  // Ponteiro p armazena o endereço de x
+   printf("Valor de x: %d\n", *p);  // Desreferencia o ponteiro p para acessar o valor de x
+   ```
+
+4. **Strings**:
+   - Strings são arrays de caracteres terminadas com `'\0'`.
+   ```c
+   char str[] = "Hello, World!";
+   printf("String: %s\n", str);  // Saída: Hello, World!
+   ```
+
+5. **Aritmética de Ponteiros**:
+   - Podemos usar aritmética de ponteiros para percorrer elementos de um array.
+   ```c
+   int arr[] = {10, 20, 30};
+   int* ptr = arr;
+   printf("Primeiro valor: %d\n", *ptr);
+   ptr++;  // Avança para o próximo elemento
+   printf("Segundo valor: %d\n", *ptr);
+   ```
+
+6. **Compare e Copie**:
+   - Usando `memcmp` e `memcpy` para comparar e copiar blocos de memória.
+   ```c
+   int arr1[] = {1, 2, 3};
+   int arr2[] = {1, 2, 3};
+   if (memcmp(arr1, arr2, sizeof(arr1)) == 0) {
+       printf("Arrays são iguais\n");
+   }
+
+   int arr3[3];
+   memcpy(arr3, arr1, sizeof(arr1));  // Copia o conteúdo de arr1 para arr3
+   ```
+
+7. **Valgrind**:
+   - Para detectar erros de memória (como vazamentos) você pode rodar o programa com o Valgrind.
+   - Exemplo (não é código, mas comando para rodar o programa com Valgrind):
+   ```bash
+   valgrind --leak-check=full ./programa
+   ```
+
+8. **Valores de Lixo**:
+   - Quando uma variável não é inicializada, ela contém "lixo", ou seja, um valor indefinido.
+   ```c
+   int x;  // Não inicializado
+   printf("Valor de x: %d\n", x);  // Comportamento indefinido
+   ```
+
+9. **Swap/Troca**:
+   - Troca os valores de duas variáveis usando uma variável temporária.
+   ```c
+   void swap(int* a, int* b) {
+       int temp = *a;
+       *a = *b;
+       *b = temp;
+   }
+   int x = 10, y = 20;
+   swap(&x, &y);
+   printf("x: %d, y: %d\n", x, y);  // Saída: x: 20, y: 10
+   ```
+
+10. **Layout de Memória**:
+    - O layout de memória descreve como as variáveis são organizadas na memória, podendo ser afetado por alinhamento de dados.
+    ```c
+    struct Pessoa {
+        char nome[50];
+        int idade;
+    };
+    // O layout de memória pode colocar 'nome' e 'idade' em endereços consecutivos, mas com padding devido ao alinhamento.
+    ```
+
+11. **scanf**:
+    - A função `scanf` lê a entrada do usuário e armazena na memória da variável fornecida.
+    ```c
+    int idade;
+    printf("Digite sua idade: ");
+    scanf("%d", &idade);  // Lê um número inteiro e armazena em 'idade'
+    printf("Sua idade é: %d\n", idade);
+    ```
+
+12. **Arquivos**:
+    - Leitura e escrita de arquivos, manipulando a memória do arquivo.
+    ```c
+    FILE* arquivo = fopen("exemplo.txt", "w");
+    if (arquivo != NULL) {
+        fprintf(arquivo, "Texto gravado no arquivo");
+        fclose(arquivo);
+    }
+
+    char buffer[100];
+    arquivo = fopen("exemplo.txt", "r");
+    if (arquivo != NULL) {
+        fgets(buffer, 100, arquivo);
+        printf("Conteúdo do arquivo: %s\n", buffer);
+        fclose(arquivo);
+    }
+    ```
+
+13. **Gráficos**:
+    - Para trabalhar com gráficos, você pode utilizar bibliotecas específicas como o OpenGL. O código abaixo é um exemplo básico de configuração do OpenGL (não está completo).
+    ```c
+    // Inicialização do OpenGL
+    glBegin(GL_TRIANGLES);
+    glVertex2f(0.0f, 1.0f);
+    glVertex2f(-1.0f, -1.0f);
+    glVertex2f(1.0f, -1.0f);
+    glEnd();
+    ```
+
+Esses exemplos cobrem os conceitos importantes discutidos na aula, fornecendo uma base sólida para manipulação de memória e dados em programação de baixo nível.
